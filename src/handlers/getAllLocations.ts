@@ -4,11 +4,15 @@ import { getAllLocations } from "../services/locationRepo";
 // This handler retrieves all location data from the DynamoDB table and returns it as a JSON response.
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const locations = await getAllLocations();
+        const locations = await getAllLocations(); // Fetch all locations from the repository
+
+        // Return the list of locations as a JSON response
         return {
             statusCode: 200,
             body: JSON.stringify(locations),
         };
+
+      // Handle any unexpected errors and return a 500 response  
     } catch (error) {
         console.error("Error fetching locations:", error);
         return {
