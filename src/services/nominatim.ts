@@ -4,6 +4,7 @@ export interface Location {
     locationId: string;
     locationName: string;
     city: string;
+    state: string;
     country: string;
     latitude: number;
     longitude: number;
@@ -23,7 +24,6 @@ export function buildSearchUrl(city:string, state:string, country: string): stri
 }
 
 //fetchLocation function fetches the latitude and longitude of a location based on the provided city, state, and country. It returns an object containing the latitude and longitude as numbers.
-
 export async function fetchLocation(city: string, state: string, country: string): Promise<{latitude: number, longitude: number}> {
     const response = await fetch(buildSearchUrl(city, state, country), {
         //User-Agent header to identify the application making the request. Nominatim's usage policy requires a valid User-Agent string.
@@ -34,12 +34,15 @@ export async function fetchLocation(city: string, state: string, country: string
 if (!response.ok) {
     throw new Error(`Failed to fetch location data: ${response.statusText}`);}
 
+ // Parse the JSON response from the Nominatim API into an array of objects containing latitude and longitude as strings.
 const result = (await response.json()) as {lat: string, lon: string}[];
+
+    // Check if any location data was returned from the API.
     if (result.length === 0) {
         throw new Error('No location data found');
     }
 
-    //nominatim API returns latitude and longitude as strings, so we need to convert them into numbers before returning.
+    //nominatim API returns latitude and longitude as strings, so it needs to be converted into numbers before returning.
     return {
         latitude: parseFloat(result[0].lat),
         longitude: parseFloat(result[0].lon)
