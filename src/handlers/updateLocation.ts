@@ -6,7 +6,7 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
     try{
 
         // Extract the locationId from the query string parameters and the location details from the request body.
-        const locationId = event.queryStringParameters?.locationId;
+        const locationId = event.pathParameters?.locationId;
 
         // Parse the request body to extract the location details.
         const {locationName,city,state,country} = JSON.parse(event.body || '{}');

@@ -14,7 +14,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             };
         }
 
-        const location = await getLocationById(locationId); // Fetch the location by ID from the repository
+        const location = await getLocationById(locationId); // Fetch the location by ID from the database (e.g., DynamoDB)
 
         // If the location is not found, return a 404 response
         if (!location) {
@@ -32,6 +32,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
        // Handle any unexpected errors and return a 500 response 
     } catch (error) {
+        // Log the error for debugging purposes
         console.error("Error fetching location by ID:", error);
         return {
             statusCode: 500,
