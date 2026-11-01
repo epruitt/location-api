@@ -4,7 +4,7 @@ import {getLocationById} from "../services/locationRepo";
 // This handler retrieves a specific location by its ID from the DynamoDB table and returns it as a JSON response.
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const locationId = event.pathParameters?.id; // Assuming the location ID is passed as a path parameter
+        const locationId = event.pathParameters?.LocationId; // Assuming the location ID is passed as a path parameter
 
         // Validate the location ID
         if (!locationId) {
