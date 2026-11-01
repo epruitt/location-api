@@ -32,7 +32,7 @@ export async function fetchLocation(city: string, state: string, country: string
 });
 
 if (!response.ok) {
-    throw new Error(`Failed to fetch location data: ${response.statusText}`);}
+    throw new Error(`Failed to fetch location data: ${response.status}- ${response.statusText}`);}
 
  // Parse the JSON response from the Nominatim API into an array of objects containing latitude and longitude as strings.
 const result = (await response.json()) as {lat: string, lon: string}[];

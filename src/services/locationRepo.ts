@@ -6,14 +6,19 @@ import { Location } from "./nominatim";
 const client =  DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
 // Define the name of the DynamoDB table for storing location data.
-const TABLE_NAME = process.env.TABLE_NAME!;
+const TABLE_NAME = process.env.TABLE_NAME;
+
+// Make sure the TABLE_NAME environment variable is set before proceeding.
+if(!TABLE_NAME) {
+    throw new Error("TABLE_NAME environment variable is not set");
+}
 
 
 // saves new location data to the DynamoDB table. 
 export async function createLocation(location: Location): Promise<void> {
     await client.send(new PutCommand({
         TableName: TABLE_NAME,
-        Item: location
+        Item: location,
     }));
 }
 

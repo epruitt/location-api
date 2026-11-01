@@ -19,7 +19,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         const {locationName, city, state, country, latitude, longitude} = body;
 
         // Validate required fields in the request body
-        if (!locationName || !city || !state || !country || latitude === undefined || longitude === undefined) {
+        if (!locationName || !city || !state || !country ) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ message: "Missing required fields" }),
@@ -32,6 +32,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             // Fetch the coordinates using the Nominatim service
             coordinates = await fetchLocation(city, state, country);
         } catch (error) {
+            
+            // Log the error for debugging purposes
             console.error("Error fetching location data:", error);
 
             // If fetching location data fails, return a 422 response with an error message
@@ -62,6 +64,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         };
         // Handle any unexpected errors and return a 500 response
     } catch (error) {
+        
+        // Log the error for debugging purposes
         console.error("Error creating location:", error);
         return {
             statusCode: 500,
