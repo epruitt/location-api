@@ -16,6 +16,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             };
         }
 
+        // Extract the required fields from the parsed request body
         const {locationName, city, state, country, latitude, longitude} = body;
 
         // Validate required fields in the request body
@@ -26,8 +27,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             };
         }
 
+        // Initialize the coordinates variable to store the fetched location data
         let coordinates;
 
+        // Attempt to fetch the coordinates from the Nominatim service based on the provided city, state, and country
         try {
             // Fetch the coordinates using the Nominatim service
             coordinates = await fetchLocation(city, state, country);
@@ -54,7 +57,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             longitude: coordinates.longitude
         };
 
-        // Create the location in the repository (e.g., DynamoDB)
+        // Create the location in the database (e.g., DynamoDB)
         await createLocation(location);
 
         // Return a 201 response with the created location data
@@ -62,6 +65,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             statusCode: 201,
             body: JSON.stringify(location),
         };
+        
         // Handle any unexpected errors and return a 500 response
     } catch (error) {
         
