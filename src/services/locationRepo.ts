@@ -8,7 +8,7 @@ const client =  DynamoDBDocumentClient.from(new DynamoDBClient({}));
 // Define the name of the DynamoDB table for storing location data.
 const LOCATION_TABLE_NAME = process.env.LOCATION_TABLE_NAME;
 
-// Make sure the TABLE_NAME environment variable is set before proceeding.
+// Make sure the LOCATION_TABLE_NAME environment variable is set before proceeding.
 if(!LOCATION_TABLE_NAME) {
     throw new Error("LOCATION_TABLE_NAME environment variable is not set");
 }

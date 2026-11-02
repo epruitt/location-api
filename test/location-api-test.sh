@@ -14,6 +14,17 @@ curl -X POST $api_url -H "Content-Type: application/json" -d '{
     "country": "USA"
 }'
 
+## retrieving location ID after creation
+CREATE_RESPONSE=$(curl -s -X POST $api_url -H "Content-Type: application/json" -d '{
+    "locationName": "Dallas Branch",
+    "city": "Dallas",
+    "state": "Texas",
+    "country": "USA"
+}')
+locationId=$(echo "$CREATE_RESPONSE" | grep -o '"locationId":[^,]*' | cut -d':' -f2 | tr -d '" ')
+echo "Found ID: $locationId"
+
+
 echo "==========="
 echo "Creating Multiple locations"
 echo "==========="
