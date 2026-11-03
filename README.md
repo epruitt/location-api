@@ -18,7 +18,7 @@ A serverless RESTful API on AWS for storing and querying locations. When a locat
 - [What Would Be Different in Production](#what-would-be-different-in-production)
 - [Business Value](#business-value)
 - [Resources](#resources)
-- [License](#license)
+- [Author](#author)
 
 ---
 
