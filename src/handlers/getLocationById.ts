@@ -1,5 +1,6 @@
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from "aws-lambda";
 import {getLocationById} from "../services/locationRepo";
+import { STATUS_CODES } from "http";
 
 // This handler retrieves a specific location by its ID from the DynamoDB table and returns it as a JSON response.
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -10,7 +11,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         if (!locationId) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({ message: "Location ID is required" }),
+                body: JSON.stringify({status: 400, message: "Location ID is required" }),
             };
         }
 
@@ -20,14 +21,14 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         if (!location) {
             return {
                 statusCode: 404,
-                body: JSON.stringify({ message: "Location not found" }),
+                body: JSON.stringify({status: 404, message: "Location not found" }),
             };
         }
 
         // Return the location data as a JSON response
         return {
             statusCode: 200,
-            body: JSON.stringify(location),
+            body: JSON.stringify({status: 200, location}),
         };
 
        // Handle any unexpected errors and return a 500 response 
@@ -36,7 +37,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         console.error("Error fetching location by ID:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: "Internal Server Error" }),
+            body: JSON.stringify({ status: 500, message: "Internal Server Error" }),
         };
     }
 }

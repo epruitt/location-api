@@ -15,7 +15,7 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
         if (!locationId || !locationName || !city || !state || !country) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({error: 'Missing required fields'}),
+                body: JSON.stringify({status: 400, error: 'Missing required fields'}),
             };
         }
 
@@ -39,14 +39,14 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
         // Return the updated location as the response.
         return {
             statusCode: 200,
-            body: JSON.stringify(location),
+            body: JSON.stringify({status: 200, location}),
         };
 
         // Handle any errors that occur during the process.
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({error: 'Internal server error'}),
+            body: JSON.stringify({status: 500, error: 'Internal server error'}),
         };
     }
 }

@@ -9,7 +9,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         // Return the list of locations as a JSON response
         return {
             statusCode: 200,
-            body: JSON.stringify(locations),
+            body: JSON.stringify({status: 200, locations}),
         };
 
       // Handle any unexpected errors and return a 500 response  
@@ -17,7 +17,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         console.error("Error fetching locations:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: "Internal Server Error" }),
+            body: JSON.stringify({status: 500, message: "Internal Server Error" }),
         };
     }
 };

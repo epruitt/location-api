@@ -12,7 +12,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         } catch (error) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({ message: "Invalid JSON in request body" }),
+                body: JSON.stringify({ status: 400, message: "Invalid JSON in request body" }),
             };
         }
 
@@ -23,7 +23,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         if (!locationName || !city || !state || !country ) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({ message: "Missing required fields" }),
+                body: JSON.stringify({ status: 400, message: "Missing required fields" }),
             };
         }
 
@@ -42,7 +42,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             // If fetching location data fails, return a 422 response with an error message
             return {
                 statusCode: 422,
-                body: JSON.stringify({ message: "could not find coordinates for the specified location" }),
+                body: JSON.stringify({ status: 422, message: "could not find coordinates for the specified location" }),
             };
         }
 
