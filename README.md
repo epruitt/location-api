@@ -167,9 +167,7 @@ Directory structure:
 | Get Location by ID | `GET` | `/locations/{locationId}` |
 | Update Location | `PUT` | `/locations/{locationId}` |
 
-### Example Request Body (Create / Update) [Placeholder]
-
-> Field names below are inferred from the data model; confirm against your handler validation.
+### Example Request Body (Create / Update)
 
 ```json
 {
@@ -211,16 +209,14 @@ Example search: <https://nominatim.openstreetmap.org/ui/search.html?city=dallas&
 
 ## Getting Started
 
-> The source document does not include setup commands. The blocks below are standard AWS CDK / TypeScript placeholders.
-
-### Prerequisites [Placeholder]
+### Prerequisites
 
 - Node.js and npm
 - AWS account and configured AWS credentials
 - AWS CDK CLI (`npm install -g aws-cdk`)
 - `curl` for API testing
 
-### Installation [Placeholder]
+### Installation
 
 ```bash
 git clone https://github.com/epruitt/location-api.git
@@ -228,17 +224,18 @@ cd location-api
 npm install
 ```
 
-### Deployment [Placeholder]
+### Deployment
 
 ```bash
-cdk bootstrap   # first time only
-cdk deploy
+npx cdk bootstrap   # first time only
+npx cdk synth
+npx cdk deploy
 ```
 
-### Teardown [Placeholder]
+### Teardown 
 
 ```bash
-cdk destroy
+npx cdk destroy
 ```
 
 ---
@@ -247,7 +244,7 @@ cdk destroy
 
 API testing is done with **cURL**, chosen from the options researched as the one best understood.
 
-### Example cURL Commands [Placeholder]
+### Example cURL Commands
 
 Replace `<API_URL>` with the API Gateway URL output after deployment.
 
@@ -288,7 +285,7 @@ curl -X PUT "<API_URL>/locations/<locationId>" \
 - **`locationId` inconsistencies:** Different spellings of `locationId` across the project caused issues after deploying.
 - **Connecting Nominatim:** Mostly planning the functions to build the URL and fetch the data.
 - **All handlers returning errors:** Caused by a combination of the issues above, mainly the table name mismatch and the `locationId` variable issue.
-- **Writing tests for the API:** Required researching ways to test REST APIs; cURL was chosen as the most understandable option.
+- **Writing tests for the API:** Required researching ways to test REST APIs; I chose cURL because I understood it the most.
 
 ---
 
@@ -309,7 +306,7 @@ curl -X PUT "<API_URL>/locations/<locationId>" \
 
 - **Accurate coordinates for logistics:** Each branch record carries longitude and latitude, so the logistics team doesn't have to rely on manually entered or inconsistent values.
 - **Low cost and operational effort:** Serverless components and on-demand billing mean cost follows usage.
-- **Easy to integrate:** A REST/JSON API can be used across the business wherever needed for other projects.
+- **Easy to integrate:** A REST API can be used across the business wherever needed for other projects.
 
 ---
 ## Author
