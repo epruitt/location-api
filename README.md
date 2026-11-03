@@ -112,6 +112,7 @@ class node_nominatim toneIndigo
 
 ### Project Structure
 
+```
 Directory structure:
 └── epruitt-location-api/
     ├── README.md
@@ -134,7 +135,7 @@ Directory structure:
     └── test/
         ├── location-api-test.sh
         └── location-api.test.ts
-
+```
 
 ### Components
 
