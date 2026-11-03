@@ -1,4 +1,4 @@
-api_url="https://orjp1h6c99.execute-api.us-east-2.amazonaws.com/prod/locations"
+api_url="https://8mqm82iw6g.execute-api.us-east-2.amazonaws.com/prod/locations"
 
 echo "=========================================="
 echo " STARTING API TESTING"
@@ -13,6 +13,7 @@ curl -X POST $api_url -H "Content-Type: application/json" -d '{
     "country": "USA"
 }'
 
+# Capture the response from creating a location to extract the location ID
 CREATE_RESPONSE=$(curl -s -X POST $api_url -H "Content-Type: application/json" -d '{
     "locationName": "Dallas Branch",
     "city": "Dallas",
