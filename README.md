@@ -173,7 +173,7 @@ Directory structure:
 
 ```json
 {
-  "locationName": "Dallas Branch",
+  "locationName": "Dallas Location",
   "city": "Dallas",
   "state": "Texas",
   "country": "USA"
@@ -255,7 +255,7 @@ Replace `<API_URL>` with the API Gateway URL output after deployment.
 # Create a location
 curl -X POST "<API_URL>/locations" \
   -H "Content-Type: application/json" \
-  -d '{"locationName":"Dallas Branch","city":"Dallas","state":"Texas","country":"USA"}'
+  -d '{"locationName":"Dallas Location","city":"Dallas","state":"Texas","country":"USA"}'
 
 # List all locations
 curl "<API_URL>/locations"
@@ -266,7 +266,7 @@ curl "<API_URL>/locations/<locationId>"
 # Update a location
 curl -X PUT "<API_URL>/locations/<locationId>" \
   -H "Content-Type: application/json" \
-  -d '{"locationName":"Dallas Branch","city":"Dallas","state":"Texas","country":"USA"}'
+  -d '{"locationName":"Austin Location","city":"Austin","state":"Texas","country":"USA"}'
 ```
 
 ---
