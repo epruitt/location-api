@@ -114,7 +114,7 @@ class node_nominatim toneIndigo
 
 ```
 Directory structure:
-└── epruitt-location-api/
+└──location-api/
     ├── README.md
     ├── cdk.json
     ├── jest.config.js
